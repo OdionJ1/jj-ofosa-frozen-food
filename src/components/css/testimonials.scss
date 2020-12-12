@@ -1,0 +1,56 @@
+.google-reviews{
+  width: 80%;
+  margin: auto;
+}
+
+.reviews{
+    display: flex;
+    width: 25%;
+    margin: auto;
+    color: #2462d4;
+    justify-content: space-around;
+}
+
+.reviews div h6 a{
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.reviews div h6 a:hover{
+    text-decoration: none;
+}
+
+.reviews div h6 a{
+    color: #28282c;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    /* from {
+      text-shadow: 0 0 10px #fff, 
+      0 0 20px #fff, 0 0 30px #2462d4, 
+      0 0 40px #2462d4, 0 0 50px #2462d4, 
+      0 0 60px #2462d4, 0 0 70px #2462d4;
+    } */
+    
+    to {
+      text-shadow: 0 0 100px #fff, 
+      0 0 30px #2462d4
+    }
+  }
+
+.reviews div hr{
+    height: 2px;
+    background-color: #2462d4;
+}
+
+@media screen and (max-width: 800px){
+  .reviews{
+    width: 70%;
+  }
+
+  .google-reviews{
+    width: 70%;
+  }
+}

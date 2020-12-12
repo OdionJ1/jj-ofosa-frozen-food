@@ -1,0 +1,82 @@
+.modalHeader{
+  font-size: 20px;
+}
+
+.quoteForm__group {
+  position: relative;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+  // font-style: italic;
+}
+
+.input__field {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 15px;
+  color: black;
+  padding: 4px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.textarea__field{
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 15px;
+  color: black;
+  padding: 2px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.input__field::placeholder {
+  color: transparent;
+}
+.input__field:placeholder-shown ~ .input__label {
+  font-size: 15px;
+  cursor: text;
+  top: 20px;
+}
+
+.input__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.input__field:focus {
+  padding-bottom: 6px;
+  /* font-weight: 700; */
+  border-width: 3px;
+  border-image: linear-gradient(to right, #2462d4, #11998e);
+  border-image-slice: 1;
+}
+.input__field:focus ~ .input__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 13px;
+  color: #11998e;
+  font-weight: 700;
+}
+
+/* reset input */
+.input__field:required, .input__field:invalid {
+  box-shadow: none;
+}
+
+.submitButton{
+  background: radial-gradient(circle, whitesmoke, #2462d4);
+  border: 0;
+  margin: 1em 0;
+}

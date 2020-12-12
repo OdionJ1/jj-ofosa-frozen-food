@@ -1,0 +1,88 @@
+@mixin navBarStyles{
+    background-clip: text;
+    overflow: hidden;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
+    cursor: pointer;
+}
+
+
+header{
+    height: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: radial-gradient(circle, rgb(243, 173, 173), white);
+}
+
+.rightNav{
+    width: 45%;
+    display: flex;
+    justify-content: space-around;
+    font-size: small;
+}
+
+.rightNav > .navbarText{
+    background: linear-gradient(to right, #28282c, rgb(53, 53, 58) 50%, #2462d4 50%);
+    @include navBarStyles();
+}
+
+.rightNav > .navbarText:hover{
+    text-decoration: none;
+    background-position: 0 100%;
+    font-style: italic;
+}
+
+.rightNav > i{
+    background: linear-gradient(to right, #dd4949, red 50%, #2462d4 50%);
+    @include navBarStyles();
+}
+
+.rightNav > i:hover{
+    text-decoration: none;
+    background-position: 0 100%;
+}
+
+.rightNav > .navbarText > i{
+    margin-right: 0.4em;
+}
+
+
+.leftNav{
+    width: 30%;
+    font-size: large;
+    font-weight: bold;
+    color: #2462d4;
+    cursor: pointer;
+    margin-left: -8em;
+}
+
+.sideNav{
+    margin-left: 4em;
+}
+
+.sideNavMobile{
+    display: none;
+}
+
+
+
+/* Media queries */
+@media screen and (max-width: 800px){
+    .rightNav{
+        display: none;
+    }
+
+    .leftNav{
+        width: 80%;
+    }
+
+    .sideNav{
+        display: none;
+    }
+
+    .sideNavMobile{
+        display: block;
+    }
+}

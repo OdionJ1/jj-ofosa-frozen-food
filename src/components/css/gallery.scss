@@ -1,0 +1,29 @@
+.gallery{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.gallery > img{
+    width: 32.5%;
+}
+
+
+@media screen and (max-width: 800px){
+    .gallery{
+        width: 80%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .gallery > img{
+        width: 95%;
+        margin-bottom: 0.5em;
+        border-radius: 5px;
+        border: 2px solid #8f805f;
+    }
+}

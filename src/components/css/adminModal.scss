@@ -1,0 +1,52 @@
+.modalHeader{
+    background: radial-gradient(circle, rgb(243, 173, 173), white);
+}
+.adminImg{
+    width: 50%;
+    margin: auto
+}
+.adminImg img{
+    width: 100%;
+    border-radius: 200px
+}
+
+.loginForm{
+    width: 70%;
+    margin: auto;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.loginForm label{
+    font-weight: bold
+}
+
+.loginForm input{
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 13px
+}
+
+.loginForm button{
+    width: 100%;
+    margin-top: 1em;
+    background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+    border: none;
+    padding: 0.2em 0;
+    color: white
+}
+
+.modalFooter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalFooter button{
+    background-color: rgb(250, 69, 69);
+    border: none;
+}
+
+.modalFooter a{
+    color: #2462d4;
+    font-size: 13px;
+}
