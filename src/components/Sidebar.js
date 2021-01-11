@@ -75,7 +75,7 @@ const SidebarMobile = () => {
     <a style={styles2} href="https://goo.gl/maps/WM7ptAK6YmfzpLq77">
       Get Directions
     </a>,
-    <a style={styles2} href="/">
+    <a style={styles2} href="/stockpage">
       View stock and prices
     </a>
   ];

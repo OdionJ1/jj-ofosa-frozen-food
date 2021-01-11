@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
+import StockPage from './components/StockpageComponents/StockPage'
 import { withRouter } from 'react-router-dom'
 import './App.css'
 
@@ -24,10 +25,14 @@ class App extends Component {
                 ...snapShot.data()
             })
           })
+          if(this.props.location.pathname === '/' || this.props.location.pathname === '/stockpage')
           this.props.history.push('/administrator')
         } else {
           this.props.setCurrentAdmin(userAuth)
-          this.props.history.push('/')
+          // console.log(this.props)
+          if(this.props.location.pathname === '/administrator' || this.props.location.pathname === '/stockpage/administrator' ){
+            this.props.history.push('/')
+          }
         }
       })
     }
@@ -37,12 +42,17 @@ class App extends Component {
     }
 
   render() {
+    // console.log(this.props)
     return (
       <div>
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/stockpage" component={StockPage} />
           {this.props.currentAdmin?
-            <Route exact path="/administrator" component={LandingPage}/>
+            <>
+              <Route path="/stockpage/administrator" component={StockPage}/>
+              <Route exact path="/administrator" component={LandingPage}/>
+            </>
             :
             ''
           }

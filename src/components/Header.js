@@ -5,6 +5,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader'
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter'
 import adminImg from '../images/admin.png';
+import { Link, withRouter } from 'react-router-dom'
 import './css/header.scss';
 import './css/adminModal.scss';
 import './css/quoteModal.scss';
@@ -31,7 +32,6 @@ class Header extends React.Component{
         try{
             await auth.signInWithEmailAndPassword(adminId, password)
                 this.setState({ adminId: '', password: '', showAdminForm: false, loginErrorMessage: null })
-                
             } catch (error) {
                 console.log(error)
                 this.setState({loginErrorMessage: error.message})
@@ -41,6 +41,11 @@ class Header extends React.Component{
     handleChange = (event) => {
         let {name, value} = event.target;
         this.setState({ [name]: value})
+    }
+
+    signOut = () => {
+        auth.signOut()
+        this.props.history.push('/')
     }
 
     render(){
@@ -61,16 +66,16 @@ class Header extends React.Component{
                 {this.props.currentAdmin?
                     <div className="rightNav">
                         <a href="#registerAdminForm" title="Register an admin" className="navbarText">Register as Admin</a>
-                        <a className="navbarText" href="/" >View stock and prices</a>
-                        <span onClick={() => auth.signOut()} className="navbarText">Sign out</span>
+                        <Link className="navbarText" to="/stockpage/administrator" >View stock and prices</Link>
+                        <span onClick={() => this.signOut()} className="navbarText">Sign out</span>
                     </div> 
                     :
                     <div className="rightNav">
                         <span className="navbarText" onClick={() => this.setState({showQuoteForm: true})}><i className="fa fa-file-text-o"></i>Get Quote</span>
                         <a className="navbarText" href="tel:07032292277"><i className="fa fa-phone-alt e-btn e-link"></i>Call now</a>
                         <a className="navbarText" href="https://goo.gl/maps/WM7ptAK6YmfzpLq77"><i className="fa fa-map-marker"></i>Get Directions</a>
-                        <a className="navbarText" href="/" >View stock and prices</a>
-                        <i onClick={() => this.setState({showAdminForm: true})} title="Administrator" className="fas fa-user-lock"></i>
+                        <Link className="navbarText" to="/stockpage" >View stock and prices</Link>
+                        <i onClick={() => this.setState({showAdminForm: true})} title="Administrator sign in" className="fas fa-user-lock"></i>
                     </div>
                 }
 
@@ -143,5 +148,5 @@ const mapStateToProps = ({admin: {currentAdmin}}) => ({
     currentAdmin
 })
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(withRouter(Header))
 
