@@ -9,7 +9,7 @@ const Breadcrumbs = ({ history, location }) => {
     const pathnames = pathname.split("/").filter(x => x)
     console.log(pathnames)
     return (
-        <MUIBreadcrumbs aria-label="breadcrumb" separator=">">
+        <MUIBreadcrumbs aria-label="breadcrumb" separator=">" style={{fontFamily: "Georgia, 'Times New Roman', Times, serif"}}>
         <Link href="/" color='primary'>
             <HomeIcon style={{marginBottom: '0.3em', padding: 0}} />
             Home

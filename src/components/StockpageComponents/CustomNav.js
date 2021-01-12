@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Paper } from '@material-ui/core'
-import { makeStyles, useTheme } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { useSelector } from 'react-redux'
 
@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
     button: {
         justifyContent: 'space-between',
         textTransform: 'none',
+        fontFamily: "Georgia, 'Times New Roman', Times, serif",
         '&:focus':{
             outline: 'none'
         }
@@ -21,17 +22,16 @@ const useStyles = makeStyles(() => ({
 
 const CustomNav = ({ children, isallProduct, ...otherProps }) => {
     const classes = useStyles()
-    let theme = useTheme()
-    let dark = theme.palette.type === 'dark'? true : false
     const currentAdmin = useSelector(({ admin: { currentAdmin }}) => currentAdmin)
+    const darkTheme = useSelector(({ theme: { darkTheme}}) => darkTheme )
 
     const iconStyles = { 
-        display: currentAdmin? 'block': 'none',
+        display: currentAdmin && !isallProduct? 'block': 'none',
         color: '#f06a6a'
     }
 
     return (
-        <Paper variant='outlined' style={{background: dark? '' : '#ddd'}} square>
+        <Paper variant='outlined' style={{background: darkTheme? '' : '#ddd'}} square>
             <Button fullWidth className={classes.button} size='medium' {...otherProps}>
                 {children}
                     <DeleteIcon style={iconStyles} onClick={isallProduct? () => {console.log('IsAllProduct')} : null} fontSize='small' />

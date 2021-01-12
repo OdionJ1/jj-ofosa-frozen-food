@@ -2,23 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
-import store from './redux/store'
+import { store, persistor } from './redux/store'
+import { PersistGate } from 'redux-persist/es/integration/react'
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { ThemeProvider, createMuiTheme } from '@material-ui/styles'
-import theme from './theme'
-
 ReactDOM.render(
-    <ThemeProvider theme={theme}>
         <Provider store={store}>
             <BrowserRouter>
-                <App />
+                <PersistGate persistor={persistor}>
+                    <App />
+                </PersistGate>
             </BrowserRouter>
-        </Provider>
-    </ThemeProvider>,
+        </Provider>,
 document.getElementById('root'));
-
-

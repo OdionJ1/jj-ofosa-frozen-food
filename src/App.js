@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import StockPage from './components/StockpageComponents/StockPage'
@@ -9,65 +9,80 @@ import { auth, createAdminProfileDocument} from './firebase/firebaseUtils'
 import { connect } from 'react-redux';
 import { setCurrentAdmin } from './redux/admin/admin.actions'
 
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
-class App extends Component {
-    unsubscribeFromAuth = null;
+const App = ({ setCurrentAdmin, currentAdmin, history, location, darkTheme }) => {
+    let unsubscribeFromAuth = null;
+    
+    useEffect(() => {
+        unsubscribeFromAuth = auth.onAuthStateChanged( async (userAuth) => {
+            if(userAuth){
+                const adminRef = await createAdminProfileDocument(userAuth);
 
-    componentDidMount () {
-      this.unsubscribeFromAuth = auth.onAuthStateChanged( async (userAuth) => {
-        if(userAuth){
-          // console.log(userAuth)
-          const adminRef= await createAdminProfileDocument(userAuth);
+                adminRef.onSnapshot(snapShot => {
+                    setCurrentAdmin({
+                        id: snapShot.id,
+                        ...snapShot.data()
+                    })
+                })
+                if(location.pathname === '/' || location.pathname === '/stockpage')
+                history.push('/administrator')
+            } else {
+                setCurrentAdmin(userAuth)
+                if(location.pathname === '/administrator' || location.pathname === '/stockpage/administrator')
+                history.push('/')
+            }
+        })
 
-          adminRef.onSnapshot(snapShot => {
-            this.props.setCurrentAdmin({
-                id: snapShot.id,
-                ...snapShot.data()
-            })
-          })
-          if(this.props.location.pathname === '/' || this.props.location.pathname === '/stockpage')
-          this.props.history.push('/administrator')
-        } else {
-          this.props.setCurrentAdmin(userAuth)
-          // console.log(this.props)
-          if(this.props.location.pathname === '/administrator' || this.props.location.pathname === '/stockpage/administrator' ){
-            this.props.history.push('/')
-          }
+        return function unsubscribe() {
+            unsubscribeFromAuth()
         }
-      })
-    }
+    }, [])
 
-    componentWillUnmount(){
-      this.unsubscribeFromAuth()
-    }
+    const theme = React.useMemo(() => createMuiTheme({
+        typography: {
+            fontFamily: "Georgia, 'Times New Roman', Times, serif",
+        },
+        palette: {
+            primary: {
+                main: '#2462d4',
+                dark: '#ffffff',
+            },
+            type: darkTheme? 'dark' : 'light',
+            secondary: {
+                main: '#28282c',
+            },
+        },
+    }), [darkTheme])
 
-  render() {
-    // console.log(this.props)
     return (
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/stockpage" component={StockPage} />
-          {this.props.currentAdmin?
-            <>
-              <Route path="/stockpage/administrator" component={StockPage}/>
-              <Route exact path="/administrator" component={LandingPage}/>
-            </>
-            :
-            ''
-          }
-        </Switch>
-      </div>
+        <ThemeProvider theme={theme}>
+            <div className="App">
+                <Switch>
+                    <Route exact path="/" component={LandingPage} />
+                    <Route exact path="/stockpage" component={StockPage} />
+                    {currentAdmin?
+                        <>
+                            <Route path="/stockpage/administrator" component={StockPage}/>
+                            <Route exact path="/administrator" component={LandingPage}/>
+                        </>
+                        :
+                        ''
+                    }
+                </Switch>
+        </div>
+        </ThemeProvider>
     )
-  }
 }
 
-const mapStateToProps = ({admin: {currentAdmin}}) => ({
-  currentAdmin
-})
 
+const mapStateToProps = ({admin: {currentAdmin}, theme: { darkTheme }}) => ({
+    currentAdmin,
+    darkTheme
+})
+  
 const mapDispatchToProps = dispatch => ({
-  setCurrentAdmin: admin => dispatch(setCurrentAdmin(admin))
+    setCurrentAdmin: admin => dispatch(setCurrentAdmin(admin))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App)); 
