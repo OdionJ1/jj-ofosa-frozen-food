@@ -73,7 +73,7 @@ class Header extends React.Component{
                     <div className="rightNav">
                         <span className="navbarText" onClick={() => this.setState({showQuoteForm: true})}><i className="fa fa-file-text-o"></i>Get Quote</span>
                         <a className="navbarText" href="tel:07032292277"><i className="fa fa-phone-alt e-btn e-link"></i>Call now</a>
-                        <a className="navbarText" href="https://goo.gl/maps/WM7ptAK6YmfzpLq77"><i className="fa fa-map-marker"></i>Get Directions</a>
+                        <a className="navbarText" href="https://goo.gl/maps/MD4XRrbefTUcnwwa6"><i className="fa fa-map-marker"></i>Get Directions</a>
                         <Link className="navbarText" to="/stockpage" >View stock and prices</Link>
                         <i onClick={() => this.setState({showAdminForm: true})} title="Administrator sign in" className="fas fa-user-lock"></i>
                     </div>

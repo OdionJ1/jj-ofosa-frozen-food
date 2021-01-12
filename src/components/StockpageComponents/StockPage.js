@@ -1,7 +1,9 @@
 import React from 'react'
 import Header from './Header'
+import Left from './Left'
 import Breadcrumbs from './Breadcrumbs'
-import { Paper, Grid } from '@material-ui/core'
+import { Paper, Grid, Divider } from '@material-ui/core'
+
 
 const StockPage = (props) => {
     // console.log(props)
@@ -10,8 +12,16 @@ const StockPage = (props) => {
             <Header />
             <div style={{margin: '3em 0'}}>
                 <Grid justify="center" container>
-                    <Grid item sm={9}>
+                    <Grid item  xs={10}>
                         <Breadcrumbs />
+                        <Grid item>
+                            <Divider />
+                        </Grid>
+                        <div style={{marginTop: '2em'}}>
+                            <Grid item md={3} xs={12}>
+                                <Left />
+                            </Grid>
+                        </div>
                     </Grid>
                 </Grid>
             </div>

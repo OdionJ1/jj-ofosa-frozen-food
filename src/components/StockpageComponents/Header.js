@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     inputRoot:{
         fontFamily: "Georgia, 'Times New Roman', Times, serif;",
         fontSize: '1em',
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        color: '#28282c'
     },
     form:{
         marginRight: '10em',

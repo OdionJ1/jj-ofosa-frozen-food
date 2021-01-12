@@ -10,13 +10,13 @@ const Breadcrumbs = ({ history, location }) => {
     console.log(pathnames)
     return (
         <MUIBreadcrumbs aria-label="breadcrumb" separator=">">
-        <Link href="/" color="inherit">
+        <Link href="/" color='primary'>
             <HomeIcon style={{marginBottom: '0.3em', padding: 0}} />
             Home
         </Link>
         {pathnames.map((pathname, index) => {
             const routeTo = `/${pathnames.slice(0, index + 1).join("/")}`
-            return index === pathnames.length-1? <Typography key={index} color="textPrimary">{pathname}</Typography> : <Link key={index} href={routeTo}>{pathname}</Link> 
+            return index === pathnames.length-1? <Typography key={index} color="textPrimary">{pathname}</Typography> : <Link color='primary' key={index} href={routeTo}>{pathname}</Link> 
         })}
         {/* <Typography color="textPrimary"> {pathnames[0]}</Typography> */}
         </MUIBreadcrumbs>

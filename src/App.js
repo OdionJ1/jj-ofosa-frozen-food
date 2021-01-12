@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     // console.log(this.props)
     return (
-      <div>
+      <div className="App">
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/stockpage" component={StockPage} />

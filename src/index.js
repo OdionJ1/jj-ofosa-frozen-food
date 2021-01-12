@@ -7,7 +7,8 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { ThemeProvider } from '@material-ui/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { ThemeProvider, createMuiTheme } from '@material-ui/styles'
 import theme from './theme'
 
 ReactDOM.render(
