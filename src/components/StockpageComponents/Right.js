@@ -8,7 +8,8 @@ import './css/right.scss'
 const Right = () => {
     return (
         <Paper variant='outlined'>
-            <Route exact path ='/stockpage' component={AllProducts} />
+            <Route exact path='/stockpage' component={AllProducts} />
+            <Route exact path='/stockpage/administrator' component={AllProducts} />
         </Paper>
     )
 }
