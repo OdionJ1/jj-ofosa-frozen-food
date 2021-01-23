@@ -18,7 +18,8 @@ const Product = ({ img, name, description, price }) => {
     const currentAdmin = useSelector(({ admin: { currentAdmin }}) => currentAdmin) 
 
     const priceStyles = {
-        color: darkTheme? '' : 'red'
+        color: darkTheme? '' : 'red',
+        fontSize: '1em'
     }
     return (
         <Card style={{backgroundColor: darkTheme? '' : '#f5f5f5', padding: '0.5em'}} elevation={0}>

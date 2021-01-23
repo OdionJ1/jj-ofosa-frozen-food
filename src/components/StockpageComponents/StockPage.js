@@ -4,6 +4,7 @@ import Left from './Left'
 import Right from './Right'
 import Breadcrumbs from './Breadcrumbs'
 import ThemeType from './ThemeType'
+import Forms from './forms/Forms'
 import { Paper, Grid, Divider } from '@material-ui/core'
 
 
@@ -32,6 +33,7 @@ const StockPage = (props) => {
                                 </Grid>
                             </Grid>
                         </div>
+                        <Forms />
                     </Grid>
                 </Grid>
             </div>

@@ -42,6 +42,9 @@ const App = ({ setCurrentAdmin, currentAdmin, history, location, darkTheme }) =>
     const theme = React.useMemo(() => createMuiTheme({
         typography: {
             fontFamily: "Georgia, 'Times New Roman', Times, serif",
+            caption: {
+                fontSize: '0.80rem'
+            }
         },
         palette: {
             primary: {

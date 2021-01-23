@@ -22,7 +22,7 @@ const AllProducts = () => {
             <div style={{margin: '0.3em 0'}}>
                 <Grid spacing={1} container>
                     {stock.map(({id, ...productDetails}) => 
-                        <Grid key={id} item xs={12} md={3}>
+                        <Grid key={id} item xs={12} sm={3}>
                             <Product {...productDetails} /> 
                         </Grid>
                     )}
